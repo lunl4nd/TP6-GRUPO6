@@ -25,5 +25,11 @@ namespace TP6_GRUPO_6
 			gridviewProductos.DataSource = gestor.ObtenerTabla(nombreTabla, consultaSQL);
 			gridviewProductos.DataBind();
 		}
-	}
+
+        protected void gridviewProductos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+			gridviewProductos.PageIndex = e.NewPageIndex;
+			CargarGridView();
+        }
+    }
 }
