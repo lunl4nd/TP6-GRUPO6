@@ -31,5 +31,33 @@ namespace TP6_GRUPO_6
 			gridviewProductos.PageIndex = e.NewPageIndex;
 			CargarGridView();
         }
+
+        protected void gridviewProductos_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+			gridviewProductos.EditIndex = e.NewEditIndex;
+			CargarGridView();
+        }
+
+        protected void gridviewProductos_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+			string idProducto = ((Label)gridviewProductos.Rows[e.RowIndex].FindControl("editIdProducto")).Text;
+			string nombreProducto = ((TextBox)gridviewProductos.Rows[e.RowIndex].FindControl("editNombreProducto")).Text;
+			string cantidadPorUnidad = ((TextBox)gridviewProductos.Rows[e.RowIndex].FindControl("editCantidadPorUnidad")).Text;
+			string precioUnidad = ((TextBox)gridviewProductos.Rows[e.RowIndex].FindControl("editPrecioUnidad")).Text;
+
+			Producto producto = new Producto(Convert.ToInt32(idProducto), nombreProducto, cantidadPorUnidad, precioUnidad);
+
+			GestionProductos gestionProductos = new GestionProductos();
+			gestionProductos.actualizarProducto(producto);
+			gridviewProductos.EditIndex = -1;
+			CargarGridView();
+			
+		}
+
+        protected void gridviewProductos_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+			gridviewProductos.EditIndex = -1;
+			CargarGridView();
+        }
     }
 }

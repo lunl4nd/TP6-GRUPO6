@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace TP6_GRUPO_6
 {
@@ -21,6 +22,21 @@ namespace TP6_GRUPO_6
             {
                 return null;
             }
+        }
+
+        public int ejecutarProcedimientoAlmacenado(SqlCommand comando, string nombreProcedimientoAlmacenado)
+        {
+            int filasAfectadas;
+            SqlConnection conexion = GetConnection();
+            SqlCommand command = new SqlCommand();
+            command = comando;
+            command.Connection = conexion;
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = nombreProcedimientoAlmacenado;
+            filasAfectadas = command.ExecuteNonQuery();
+            conexion.Close();
+            return filasAfectadas;
+
         }
     }
 }

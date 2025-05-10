@@ -20,5 +20,38 @@ namespace TP6_GRUPO_6
 			dataAdapter.Fill(dataset, nombreTabla);
 			return dataset.Tables[nombreTabla];
 		}
+
+		private void armarParametrosActualizar(ref SqlCommand comando, Producto producto)
+        {
+			SqlParameter parametros = new SqlParameter();
+			parametros = comando.Parameters.Add("@IdProducto", SqlDbType.Int);
+			parametros.Value = producto.IdProducto;
+			parametros = comando.Parameters.Add("@NombreProducto", SqlDbType.NVarChar, 40);
+			parametros.Value = producto.NombreProducto;
+			parametros = comando.Parameters.Add("@CantidadPorUnidad", SqlDbType.NVarChar, 20);
+			parametros.Value = producto.Cantidadporunidad;
+			parametros = comando.Parameters.Add("@PrecioUnidad", SqlDbType.Money);
+			parametros.Value = producto.Precioporunidad;
+
+
+        }
+
+		public bool actualizarProducto(Producto producto)
+        {
+			SqlCommand comando = new SqlCommand();
+			armarParametrosActualizar(ref comando, producto);
+			Conexion conexion = new Conexion();
+			int filasAfectadas = conexion.ejecutarProcedimientoAlmacenado(comando, "spActualizarProducto");
+			
+			if(filasAfectadas == 1)
+            {
+				return true;
+            }
+            else
+            {
+				return false;
+            }
+		}
+
 	}
 }

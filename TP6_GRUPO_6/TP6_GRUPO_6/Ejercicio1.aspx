@@ -34,24 +34,36 @@
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
                     <td>
-            <asp:GridView ID="gridviewProductos" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnPageIndexChanging="gridviewProductos_PageIndexChanging">
+            <asp:GridView ID="gridviewProductos" runat="server" AllowPaging="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#3366CC" BorderStyle="None" BorderWidth="1px" CellPadding="4" OnPageIndexChanging="gridviewProductos_PageIndexChanging" AutoGenerateEditButton="True" OnRowEditing="gridviewProductos_RowEditing" OnRowUpdating="gridviewProductos_RowUpdating" OnRowCancelingEdit="gridviewProductos_RowCancelingEdit">
                 <Columns>
                     <asp:TemplateField HeaderText="Id Producto">
+                        <EditItemTemplate>
+                            <asp:Label ID="editIdProducto" runat="server" Text='<%# Bind("IdProducto") %>'></asp:Label>
+                        </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="lbl_it_idProducto" runat="server" Text='<%# Bind("IdProducto") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Nombre Producto">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="editNombreProducto" runat="server"></asp:TextBox>
+                        </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="lbl_it_nombreProducto" runat="server" Text='<%# Bind("NombreProducto") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Cantidad Por Unidad">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="editCantidadPorUnidad" runat="server"></asp:TextBox>
+                        </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="lbl_it_cantidadPorUnidad" runat="server" Text='<%# Bind("CantidadPorUnidad") %>'></asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Precio Unidad">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="editPrecioUnidad" runat="server"></asp:TextBox>
+                        </EditItemTemplate>
                         <ItemTemplate>
                             <asp:Label ID="lbl_it_precioUnidad" runat="server" Text='<%# Bind("PrecioUnidad") %>'></asp:Label>
                         </ItemTemplate>
