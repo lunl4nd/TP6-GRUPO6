@@ -32,8 +32,13 @@ namespace TP6_GRUPO_6
 			parametros.Value = producto.Cantidadporunidad;
 			parametros = comando.Parameters.Add("@PrecioUnidad", SqlDbType.Money);
 			parametros.Value = producto.Precioporunidad;
+        }
 
-
+		private void armarParametrosEliminar(ref SqlCommand comando, Producto producto)
+		{
+			SqlParameter parametro = new SqlParameter();
+            parametro = comando.Parameters.Add("@IdProducto", SqlDbType.Int);
+			parametro.Value = producto.IdProducto;
         }
 
 		public bool actualizarProducto(Producto producto)
@@ -52,6 +57,23 @@ namespace TP6_GRUPO_6
 				return false;
             }
 		}
+
+		public bool eliminarProducto(Producto producto)
+		{
+			SqlCommand comando = new SqlCommand();
+			armarParametrosEliminar(ref comando, producto);
+			Conexion conexion = new Conexion();
+			int filasAfectadas = conexion.ejecutarProcedimientoAlmacenado(comando, "spEliminarProducto");
+            if (filasAfectadas == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
 	}
 }

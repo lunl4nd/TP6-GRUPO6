@@ -59,5 +59,17 @@ namespace TP6_GRUPO_6
 			gridviewProductos.EditIndex = -1;
 			CargarGridView();
         }
+
+        protected void gridviewProductos_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+			string idProducto = ((Label)gridviewProductos.Rows[e.RowIndex].FindControl("lbl_it_idProducto")).Text;
+
+			Producto producto = new Producto(Convert.ToInt32(idProducto));
+
+			GestionProductos gestionProductos = new GestionProductos();
+			gestionProductos.eliminarProducto(producto);
+
+			CargarGridView();
+		}
     }
 }
