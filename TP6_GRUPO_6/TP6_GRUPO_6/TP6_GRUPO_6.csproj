@@ -91,6 +91,7 @@
       <DependentUpon>Ejercicio2.aspx</DependentUpon>
     </Compile>
     <Compile Include="GestionProductos.cs" />
+    <Compile Include="gestorSesiones.cs" />
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

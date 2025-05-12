@@ -21,6 +21,11 @@ namespace TP6_GRUPO_6
 			return dataset.Tables[nombreTabla];
 		}
 
+		public DataTable obtenerProductos()
+        {
+			return ObtenerTabla("Productos", "SELECT * FROM Productos");
+        }
+
 		private void armarParametrosActualizar(ref SqlCommand comando, Producto producto)
         {
 			SqlParameter parametros = new SqlParameter();
@@ -73,6 +78,8 @@ namespace TP6_GRUPO_6
                 return false;
             }
         }
+
+		
 
 
 	}

@@ -11,24 +11,21 @@ namespace TP6_GRUPO_6
 {
 	public partial class SeleccionarProductos : System.Web.UI.Page
     {
-        GestionProductos gestor = new GestionProductos();
-        string nombreTabla = "Tabla de Productos";
         protected void Page_Load(object sender, EventArgs e)
 		{
             if (!IsPostBack)
             {
                 CargarGridView();
-                if (Session["Tabla"] == null)
-                {
-                    Session["Tabla"] = CrearTabla();
-                }
+                
             }
+
+
         }
 
         private void CargarGridView()
         {
-            string consultaSQL = "SELECT * FROM PRODUCTOS";
-            gridviewProductos2.DataSource = gestor.ObtenerTabla(nombreTabla, consultaSQL);
+            GestionProductos productos = new GestionProductos();
+            gridviewProductos2.DataSource = productos.obtenerProductos();
             gridviewProductos2.DataBind();
         }
 
@@ -37,34 +34,27 @@ namespace TP6_GRUPO_6
             int idProducto = Convert.ToInt32(((Label)gridviewProductos2.Rows[e.NewSelectedIndex].FindControl("labelItemID")).Text);
             string Nombre = ((Label)gridviewProductos2.Rows[e.NewSelectedIndex].FindControl("labelItemProducto")).Text;
             int idProveedor = Convert.ToInt32(((Label)gridviewProductos2.Rows[e.NewSelectedIndex].FindControl("labelItemProveedor")).Text);
-            string Precio = ((Label)gridviewProductos2.Rows[e.NewSelectedIndex].FindControl("labelItemPrecio")).Text;
-            AgregarFila((DataTable)Session["Tabla"], idProducto, Nombre, idProveedor, Precio);
+            decimal Precio = Convert.ToDecimal(((Label)gridviewProductos2.Rows[e.NewSelectedIndex].FindControl("labelItemPrecio")).Text);
+
+            bool fueAgregado = gestorSesiones.agregarProducto(idProducto, Nombre, idProveedor, Precio);
+            if (!fueAgregado)
+            {
+                pAgregado.Text = "El producto " + Nombre + " ya fue agregado";
+            }
+            else
+            {
+                pAgregado.Text = "El Producto " + Nombre + " ha sido agregado";
+            }
+            
+
+            pAgregado.Visible = true;
+            
         }
 
-        private DataTable CrearTabla()
+        protected void gridviewProductos2_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            DataTable dataTable = new DataTable();
-            DataColumn dataColumn = new DataColumn("IdProducto", System.Type.GetType("System.Int32"));
-            dataTable.Columns.Add(dataColumn);
-            dataColumn = new DataColumn("NombreProducto",System.Type.GetType("System.String"));
-            dataTable.Columns.Add(dataColumn);
-            dataColumn = new DataColumn("IdProveedor", System.Type.GetType("System.Int32"));
-            dataTable.Columns.Add(dataColumn);
-            dataColumn = new DataColumn("PrecioUnitario", System.Type.GetType("System.Single"));
-            dataTable.Columns.Add(dataColumn);
-            return dataTable;
+            gridviewProductos2.PageIndex = e.NewPageIndex;
+            CargarGridView();
         }
-
-        private DataTable AgregarFila(DataTable data, int idProducto, string Nombre, int idProveedor, string Precio)
-        {
-            DataRow datarow = data.NewRow();
-            datarow["IdProducto"] = idProducto;
-            datarow["NombreProducto"] = Nombre;
-            datarow["IdProveedor"] = idProveedor;
-            datarow["PrecioUnitario"] = Precio;
-            data.Rows.Add(datarow);
-            return data;
-        }
-
     }
 }

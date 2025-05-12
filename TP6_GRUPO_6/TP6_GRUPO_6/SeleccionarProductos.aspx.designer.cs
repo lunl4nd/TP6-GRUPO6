@@ -33,6 +33,15 @@ namespace TP6_GRUPO_6
         protected global::System.Web.UI.WebControls.GridView gridviewProductos2;
 
         /// <summary>
+        /// Control pAgregado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label pAgregado;
+
+        /// <summary>
         /// Control HyperLink1.
         /// </summary>
         /// <remarks>
