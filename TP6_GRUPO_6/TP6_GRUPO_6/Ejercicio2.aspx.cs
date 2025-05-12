@@ -12,6 +12,18 @@ namespace TP6_GRUPO_6
 		protected void Page_Load(object sender, EventArgs e)
 		{
 
-		}
-	}
+        }
+
+        protected void linkbuttonEliminar_Click(object sender, EventArgs e)
+        {
+            if (Session["Tabla"] != null) {
+                Session["Tabla"] = null;
+                lblMensaje.Text = "Todos los productos seleccionados han sido eliminados";
+            }
+            else
+            {
+                lblMensaje.Text = "No hay productos seleccionados para eliminar";
+            }
+        }
+    }
 }
