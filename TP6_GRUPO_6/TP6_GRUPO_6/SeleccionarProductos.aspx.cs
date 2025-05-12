@@ -44,13 +44,13 @@ namespace TP6_GRUPO_6
         private DataTable CrearTabla()
         {
             DataTable dataTable = new DataTable();
-            DataColumn dataColumn = new DataColumn("Id Producto", System.Type.GetType("System.Int32"));
+            DataColumn dataColumn = new DataColumn("IdProducto", System.Type.GetType("System.Int32"));
             dataTable.Columns.Add(dataColumn);
-            dataColumn = new DataColumn("Nombre Producto",System.Type.GetType("System.String"));
+            dataColumn = new DataColumn("NombreProducto",System.Type.GetType("System.String"));
             dataTable.Columns.Add(dataColumn);
-            dataColumn = new DataColumn("Id Proveedor", System.Type.GetType("System.Int32"));
+            dataColumn = new DataColumn("IdProveedor", System.Type.GetType("System.Int32"));
             dataTable.Columns.Add(dataColumn);
-            dataColumn = new DataColumn("Precio Unitario", System.Type.GetType("System.Single"));
+            dataColumn = new DataColumn("PrecioUnitario", System.Type.GetType("System.Single"));
             dataTable.Columns.Add(dataColumn);
             return dataTable;
         }
@@ -58,10 +58,10 @@ namespace TP6_GRUPO_6
         private DataTable AgregarFila(DataTable data, int idProducto, string Nombre, int idProveedor, string Precio)
         {
             DataRow datarow = data.NewRow();
-            datarow["Id Producto"] = idProducto;
-            datarow["Nombre Producto"] = Nombre;
-            datarow["Id Proveedor"] = idProveedor;
-            datarow["Precio Unitario"] = Precio;
+            datarow["IdProducto"] = idProducto;
+            datarow["NombreProducto"] = Nombre;
+            datarow["IdProveedor"] = idProveedor;
+            datarow["PrecioUnitario"] = Precio;
             data.Rows.Add(datarow);
             return data;
         }
