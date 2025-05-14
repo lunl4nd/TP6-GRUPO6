@@ -11,12 +11,13 @@ namespace TP6_GRUPO_6
 {
 	public partial class SeleccionarProductos : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
 		{
             if (!IsPostBack)
             {
                 CargarGridView();
-                
+                CantidadProductos.Visible = false;
             }
 
 
@@ -40,12 +41,16 @@ namespace TP6_GRUPO_6
             if (!fueAgregado)
             {
                 pAgregado.Text = "El producto " + Nombre + " ya fue agregado";
+                CantidadProductos.Visible = true;
             }
             else
             {
                 pAgregado.Text = "El Producto " + Nombre + " ha sido agregado";
+                gestorSesiones.cantidadSeleccionada++;
+                CantidadProductos.Visible = true;
+                CantidadProductos.Text = "Hay " + gestorSesiones.cantidadSeleccionada + " productos seleccionados!";
             }
-            
+
 
             pAgregado.Visible = true;
             

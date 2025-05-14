@@ -64,5 +64,8 @@ namespace TP6_GRUPO_6
         {
             HttpContext.Current.Session.Remove(TABLA_PRODUCTOS);
         }
+
+        public static int cantidadSeleccionada;
+
     }
 }

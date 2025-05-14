@@ -65,6 +65,7 @@
                     </td>
                 </tr>
             </table>
+            <asp:Label ID="CantidadProductos" runat="server" Visible="False"></asp:Label>
             <br />
         </div>
     </form>

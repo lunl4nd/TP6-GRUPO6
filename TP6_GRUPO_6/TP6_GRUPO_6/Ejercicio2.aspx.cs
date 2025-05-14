@@ -11,12 +11,14 @@ namespace TP6_GRUPO_6
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+            lblMensaje.Text = string.Empty;
         }
 
         protected void linkbuttonEliminar_Click(object sender, EventArgs e)
         {
             gestorSesiones.limpiarTablaProductosSesion();
+            gestorSesiones.cantidadSeleccionada = 0;
+            lblMensaje.Text = "Se eliminaron los productos seleccionados!";
         }
     }
 }
