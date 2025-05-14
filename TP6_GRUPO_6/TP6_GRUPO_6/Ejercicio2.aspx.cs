@@ -17,8 +17,15 @@ namespace TP6_GRUPO_6
         protected void linkbuttonEliminar_Click(object sender, EventArgs e)
         {
             gestorSesiones.limpiarTablaProductosSesion();
-            gestorSesiones.cantidadSeleccionada = 0;
-            lblMensaje.Text = "Se eliminaron los productos seleccionados!";
+            if(gestorSesiones.cantidadSeleccionada > 0)
+            {
+                gestorSesiones.cantidadSeleccionada = 0;
+                lblMensaje.Text = "Se eliminaron los productos seleccionados!";
+            }else
+            {
+                lblMensaje.Text = "No hay productos seleccionados!";
+            }
+            
         }
     }
 }
